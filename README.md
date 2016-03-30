@@ -29,6 +29,7 @@ a lot of config for the first time, but once you have it up and running, you no 
 ### 0.2.0
 
 - syntax for describe model
+- comment on paper
 - attach model to paper manually
 - abstract author and press from paper
 - visualize
@@ -39,10 +40,16 @@ a lot of config for the first time, but once you have it up and running, you no 
 - run `MatLab` code
 - run `Dynaform` on linux server
 
+### 0.4.0
+
+- turn the server to a collaborate platform
+- write latex
+- paper review
+- real time chat
+
 ## Contribute
 
 PR and issue are not welcomed, please use your valuable time on other interesting projects, don't waste it on this one.
-
 
 ## License
 
