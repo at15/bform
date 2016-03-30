@@ -9,19 +9,21 @@
 
 ### Backend
 
-- Nginx (Openresty)
-- Java
-- Spring boot (use as rest server only)
-- H2 (may use pg for production)
-- Elasticsearch (for search)
-- Mongodb or redis (for NoSQL or cache)
+- Nginx (Openresty) is used to serve static file, proxy request to tomcat. Also we could use lua to route base on JWT
+- Java + Spring boot (use as rest server only, may optimize the pom, since we are using full mvc)
+- H2 (May use MySQL for production, since we are using hibernate, the change could be transparent). Also h2 has a console.
+- Elasticsearch (for search and NoSQL storage)
+- Auth part, could use middleware, spring security or shiro.
 
-## Setup on Windows
+## Setup
+
+### Windows
 
 - [Install Nginx](https://moonbingbing.gitbooks.io/openresty-best-practices/content/openresty/install_on_windows.html)
 - Install Java
 - Install Maven
 - Install Node
-- Install PostgreSQL
 
-e.... so many to install, I think I need to use linux now....
+### Linux
+
+### Vagrant
