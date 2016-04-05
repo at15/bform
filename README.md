@@ -7,6 +7,10 @@ model and experiment data can be attached to related paper, you can play with th
 researchers who use FEM a lot, you can run simulation on server to validate theories from papers, though it might requires
 a lot of config for the first time, but once you have it up and running, you no longer need to keep your laptop open.
 
+## Develop
+
+- Front end is in [a separated repo](https://github.com/at15/bform-web), in order to simplify travis ci settings
+
 ## Features
 
 - Paper store, index and share.
