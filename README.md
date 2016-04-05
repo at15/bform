@@ -1,4 +1,4 @@
-# bfrom
+# bform
 Paper and data management web application for plastic forming
 
 This project is related to my thesis in SJTU [SMSE](http://en.smse.sjtu.edu.cn/) (School of Material Science and Engineering).
