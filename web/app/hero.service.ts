@@ -10,4 +10,11 @@ export class HeroService {
     getHeroes() {
         return Promise.resolve(HEROES);
     }
+
+    getHero(id: number) {
+        return Promise.resolve(HEROES).then(
+            // TODO: where does the filter comes from
+            heroes => heroes.filter(hero => hero.id === id)[0]
+        );
+    }
 }

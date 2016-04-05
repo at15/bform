@@ -1,6 +1,7 @@
-import {Component,OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {HeroDetailComponent} from './hero-detail.component';
 import {HeroService} from './hero.service';
+import {Router} from 'angular2/router';
 
 export class Hero {
     id:number;
@@ -9,86 +10,38 @@ export class Hero {
 
 @Component({
     selector: 'my-heroes',
-    template: `
-  <h1>{{title}}</h1>
-  <my-hero-detail [hero]="selectedHero"></my-hero-detail>
-
-  <h2>My Heroes</h2>
-<ul class="heroes">
-  <li *ngFor="#hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
-  <span class="badge">{{hero.id}}</span> {{hero.name}}
-  </li>
-</ul>
-  `,
-    styles: [`
-  .selected {
-    background-color: #CFD8DC !important;
-    color: white;
-  }
-  .heroes {
-    margin: 0 0 2em 0;
-    list-style-type: none;
-    padding: 0;
-    width: 15em;
-  }
-  .heroes li {
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #EEE;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
-    border-radius: 4px;
-  }
-  .heroes li.selected:hover {
-    background-color: #BBD8DC !important;
-    color: white;
-  }
-  .heroes li:hover {
-    color: #607D8B;
-    background-color: #DDD;
-    left: .1em;
-  }
-  .heroes .text {
-    position: relative;
-    top: -3px;
-  }
-  .heroes .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #607D8B;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-  }
-`],
+    templateUrl: 'app/heroes.component.html',
+    styleUrls: ['app/heroes.component.css'],
     directives: [HeroDetailComponent],
-    providers:[]
+    providers: []
 })
-export class HeroesComponent implements OnInit{
-    ngOnInit(){
+export class HeroesComponent implements OnInit {
+    ngOnInit() {
         this.getHeroes();
     }
 
-    constructor(private _heroService: HeroService) {}
+    constructor(private _heroService:HeroService,
+                private _router:Router) {
+    }
 
-    public heroes : Hero[];
+    public heroes:Hero[];
     title = 'Tour of Heroes';
     hero:Hero = {
         id: 1,
         name: 'Windstorm'
     };
     // selectedHero: Hero = {id:0,name:''};
-    selectedHero: Hero;
-    onSelect(hero: Hero) { this.selectedHero = hero; }
+    selectedHero:Hero;
+
+    onSelect(hero:Hero) {
+        this.selectedHero = hero;
+    }
+
     getHeroes() {
         this._heroService.getHeroes().then(heroes => this.heroes = heroes);
+    }
+
+    gotoDetail() {
+        this._router.navigate(['HeroDetail', {id: this.selectedHero.id}]);
     }
 }
