@@ -1,0 +1,23 @@
+{
+  "name": "at15/bform",
+  "description": "Paper and Data management for Blank Forming",
+  "keywords": [
+    "paper management",
+    "science",
+    "materials",
+    "blank forming"
+  ],
+  "config": {
+    "preferred-install": "dist"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  },
+  "license": "Apache-2.0",
+  "require": {
+    "php": ">=7.0.0"
+  }
+}

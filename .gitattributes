@@ -8,5 +8,8 @@
 # PHP source file use lf
 *.php text eol=lf
 
+# Composer use lf
+composer.* text eol=lf
+
 # Windows only file need CRLF
 *.bat text eol=crlf
