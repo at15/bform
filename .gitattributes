@@ -8,6 +8,9 @@
 # PHP source file use lf
 *.php text eol=lf
 
+# Markdown file use lf
+*.md text eol=lf
+
 # Composer use lf
 composer.* text eol=lf
 
