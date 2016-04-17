@@ -1,13 +1,12 @@
-# Force gradle file to use lf
-*.gradle text eol=lf
-gradlew text eol=lf
+# sh files use lf
+*.sh text eol=lf
 
 # Git config files use lf
 .gitignore text eol=lf
 .gitattributes text eol=lf
 
-# Java source file use lf
-*.java text eol=lf
+# PHP source file use lf
+*.php text eol=lf
 
 # Windows only file need CRLF
 *.bat text eol=crlf
