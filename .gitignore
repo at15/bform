@@ -1,6 +1,7 @@
 .vagrant
 .idea
 *.log
+tmp
 
 # PHP
 vendor
