@@ -14,5 +14,8 @@
 # Composer use lf
 composer.* text eol=lf
 
+# repl file use lf
+util/repl text eol=lf
+
 # Windows only file need CRLF
 *.bat text eol=crlf
