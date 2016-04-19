@@ -14,8 +14,11 @@
 # Composer use lf
 composer.* text eol=lf
 
-# repl file use lf
-util/repl text eol=lf
+# util script files use lf
+util/* text eol=lf
 
 # Windows only file need CRLF
 *.bat text eol=crlf
+
+# Config files use lf
+*.conf text eol=lf
