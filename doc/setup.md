@@ -1,14 +1,9 @@
 # Setup
 
-## Windows
-
-- [Install Nginx](https://moonbingbing.gitbooks.io/openresty-best-practices/content/openresty/install_on_windows.html)
-- Install Java
-
-
-## Linux
-
-- Install Java
-- run `./gradlew build`, which will use gradle wrapper to download dependencies and build. Maven is not required
-
 ## Vagrant
+
+- copy `.env.example` in `util/laravel` to `.env`
+- change database credentials in `.env`, for `at15/lnmp7` it's `root:vagrant`
+- run `util/artisan key:generate` to generate random string
+- run `util/database/create.sh` to create `bform` database
+- run `util/artisan migrate --seed`

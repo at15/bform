@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+/**
+ * A repl used for play and debug with the application using psysh http://psysh.org/
+ *
+ * created on 2016/4/17 20:28
+ *
+ * @author at15
+ */
+
+
+// load composer autoload
+require_once(__DIR__ . '/../vendor/autoload.php');
+
+// Psy\sh
+eval(\Psy\sh());

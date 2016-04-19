@@ -1,0 +1,43 @@
+{
+  "name": "at15/bform",
+  "description": "Paper and Data management for Blank Forming",
+  "keywords": [
+    "paper management",
+    "science",
+    "materials",
+    "blank forming"
+  ],
+  "config": {
+    "preferred-install": "dist"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  },
+  "license": "Apache-2.0",
+  "require": {
+    "php": ">=7.0.0",
+    "slim/slim": "^3.3",
+    "illuminate/database": "5.2.*",
+    "illuminate/pagination": "5.2.*"
+  },
+  "require-dev": {
+    "laravel/framework": "5.2.*",
+    "squizlabs/php_codesniffer": "@stable",
+    "phploc/phploc": "@stable",
+    "psy/psysh": "@stable"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dy\\": "src",
+      "Bform\\": "app"
+    }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "util/laravel/database"
+    ]
+  }
+}
