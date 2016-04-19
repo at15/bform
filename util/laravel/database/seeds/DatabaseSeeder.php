@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        echo 'Seed! ' . PHP_EOL;
+        echo 'GunDamu Seed! ' . PHP_EOL; // I don't know how to spell GunDamu
         Model::unguard();
 
 //        $this->call(SchoolTableSeeder::class);

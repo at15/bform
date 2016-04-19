@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        //
-        echo "baby you are down down down";
+        echo "baby you are down down down" . PHP_EOL;
     }
 }

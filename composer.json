@@ -34,5 +34,10 @@
       "Dy\\": "src",
       "Bform\\": "app"
     }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "util/laravel/database"
+    ]
   }
 }
