@@ -12,7 +12,19 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        echo 'I am first migration!' . PHP_EOL;
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('display_name');
+            $table->string('email')->default('');
+            $table->string('password', 60);
+            $table->integer('role');
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->unique('name');
+            $table->unique('display_name');
+        });
     }
 
     /**
@@ -22,6 +34,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        echo "baby you are down down down" . PHP_EOL;
+        Schema::dropIfExists('users');
     }
 }

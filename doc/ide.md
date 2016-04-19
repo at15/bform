@@ -16,3 +16,7 @@ ask you to accept unknown host rsa when using ssh.
  framework for migration, PHPStorm will find multiple definition for
  Database classes, got to `vendor` folder and mark either `illuminate/database`
  or `laravel/framework/src/Illuminate/Database` as `excluded`
+
+## Typo
+
+- save `bform` to your dictionary XD

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * DatabaseSeeder will run other seeders
+ *
+ * use command with `--seed`, like `php artisan migrate --seed`
+ */
+
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,10 +18,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        echo 'GunDamu Seed! ' . PHP_EOL; // I don't know how to spell GunDamu
         Model::unguard();
 
-//        $this->call(SchoolTableSeeder::class);
+        $this->call(UserTableSeeder::class);
 
         Model::reguard();
     }
