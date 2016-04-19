@@ -12,8 +12,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        //
-        echo "day day up!";
+        echo 'I am first migration!' . PHP_EOL;
     }
 
     /**
