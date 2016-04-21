@@ -32,3 +32,24 @@ if (!file_exists($swaggerJsonPath)) {
 }
 
 ln_green($swaggerJsonPath . ' found!');
+
+
+// now read the json file
+$swaggerDocument = json_decode(file_get_contents($swaggerJsonPath), true);
+//var_dump($swaggerDocument);
+
+// loop all the paths
+$basePath = $swaggerDocument['basePath'];
+//ln($basePath);
+$paths = $swaggerDocument['paths'];
+foreach ($paths as $url => $config) {
+//  concat to full path
+    $url = $basePath . $url;
+//  find all the http methods in one path
+    foreach ($config as $k => $v) {
+        if (is_request_method($k)) {
+            ln($url . ' ' . $k);
+        }
+    }
+//    var_dump($url);
+}

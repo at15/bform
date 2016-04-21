@@ -5,32 +5,19 @@
  * Date: 16-4-21
  * Time: 下午10:31
  *
- * Global functions for console
+ * Load all the helper functions in helper folder
  */
 
-function ln($msg){
-    echo $msg . PHP_EOL;
+$d = dir(__DIR__ . '/helper');
+
+while (false !== ($entry = $d->read())) {
+    if ($entry === '.' || $entry === '..') {
+        continue;
+    }
+    if (strstr($entry, '.php')) {
+//        echo $entry . PHP_EOL;
+//        echo $d->path . '/' . $entry . PHP_EOL;
+        require_once($d->path . '/' . $entry);
+    }
 }
-
-function ln_color($color, $msg)
-{
-    echo "\033[" . $color . 'm' . $msg . "\033[0m" . PHP_EOL;
-}
-
-function ln_red($msg)
-{
-    ln_color('0;31', $msg);
-}
-
-function ln_green($msg)
-{
-    ln_color('0;32', $msg);
-}
-
-function ln_yellow($msg){
-    ln_color('1;33', $msg);
-}
-
-
-//ln_red("aa");
-//ln_green("aa");
+$d->close();
