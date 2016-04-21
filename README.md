@@ -9,7 +9,11 @@ a lot of config for the first time, but once you have it up and running, you no 
 
 ## Develop
 
-- Front end is in [a separated repo](https://github.com/at15/bform-web), in order to simplify travis ci settings
+In order to simplify travis ci settings, the project has three repos.
+
+- API is in [bform-api](https://github.com/at15/bform-api)
+- Backend is in [this repo](https://github.com/at15/bform)
+- Frontend is in [bform-web](https://github.com/at15/bform-web) 
 
 ## Features
 
