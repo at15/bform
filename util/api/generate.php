@@ -51,13 +51,17 @@ $swaggerDocument = json_decode(file_get_contents($swaggerJsonPath), true);
 $basePath = $swaggerDocument['basePath'];
 ln("base path is {$basePath}");
 $paths = $swaggerDocument['paths'];
+
+ob_start();
 foreach ($paths as $url => $config) {
     $url = concat_url($basePath, $url);
     //  find all the http methods in one path
     foreach ($config as $k => $v) {
         if (is_request_method($k)) {
-            ln("[{$k}] {$url}");
-//            ln($url . ' ' . $k);
+            echo "\$app->{$k}('{$url}','Bform\\Controller\\'');\n";
         }
     }
 }
+$routeFileContent = ob_get_contents();
+ob_end_clean();
+ln_green($routeFileContent);
