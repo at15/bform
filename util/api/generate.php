@@ -22,11 +22,20 @@ if (!file_exists($bformAPIRepo)) {
 // clean the relative path
 $bformAPIRepo = realpath($bformAPIRepo);
 
-// check if swagger json exists
+// generate swagger json
+$convertCommand = "node {$bformAPIRepo}/util/convert.js";
+//die($convertCommand);
+$convertResult = system($convertCommand);
+if ($convertResult === FALSE) {
+    ln_red("can't execute {$convertCommand}");
+    exit(500);
+}
+
+// double check if swagger json exists, in case break api change.
 $swaggerJsonPath = $bformAPIRepo . '/util/swagger.json';
 if (!file_exists($swaggerJsonPath)) {
     ln_red($swaggerJsonPath . ' does not exists, try to generate one');
-    ln('Please run the following command in ' . realpath($bformAPIRepo));
+    ln('Run the following command in ' . realpath($bformAPIRepo) . ' and check error output');
     ln_green('node util/convert.js');
     exit(404);
 }
