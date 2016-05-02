@@ -9,6 +9,9 @@
  *
  */
 
+/**
+ * @param $msg string
+ */
 function ln($msg){
     echo $msg . PHP_EOL;
 }

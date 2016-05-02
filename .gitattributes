@@ -22,3 +22,4 @@ util/* text eol=lf
 
 # Config files use lf
 *.conf text eol=lf
+Vagrantfile text eol=lf

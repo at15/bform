@@ -9,24 +9,24 @@
  *
  */
 
-require_once(__DIR__ . '/helper.php');
+require_once(__DIR__ . '/loader.php');
 
 // check if api dir exists
-$bformAPI = __DIR__ . '/../../../bform-api';
-if (!file_exists($bformAPI)) {
+$bformAPIRepo = __DIR__ . '/../../../bform-api';
+if (!file_exists($bformAPIRepo)) {
     ln_red('bform api does not exists');
     ln('Please run the following command in ' . realpath(__DIR__ . '/../../..'));
     ln_green('git clone git@github.com:at15/bform-api.git');
     exit(404);
 }
 // clean the relative path
-$bformAPI = realpath($bformAPI);
+$bformAPIRepo = realpath($bformAPIRepo);
 
 // check if swagger json exists
-$swaggerJsonPath = $bformAPI . '/util/swagger.json';
+$swaggerJsonPath = $bformAPIRepo . '/util/swagger.json';
 if (!file_exists($swaggerJsonPath)) {
     ln_red($swaggerJsonPath . ' does not exists, try to generate one');
-    ln('Please run the following command in ' . realpath($bformAPI));
+    ln('Please run the following command in ' . realpath($bformAPIRepo));
     ln_green('node util/convert.js');
     exit(404);
 }
@@ -40,16 +40,15 @@ $swaggerDocument = json_decode(file_get_contents($swaggerJsonPath), true);
 
 // loop all the paths
 $basePath = $swaggerDocument['basePath'];
-//ln($basePath);
+ln("base path is {$basePath}");
 $paths = $swaggerDocument['paths'];
 foreach ($paths as $url => $config) {
-//  concat to full path
-    $url = $basePath . $url;
-//  find all the http methods in one path
+    $url = concat_url($basePath, $url);
+    //  find all the http methods in one path
     foreach ($config as $k => $v) {
         if (is_request_method($k)) {
-            ln($url . ' ' . $k);
+            ln("[{$k}] {$url}");
+//            ln($url . ' ' . $k);
         }
     }
-//    var_dump($url);
 }
