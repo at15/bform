@@ -21,20 +21,16 @@ final class Token
     public function __construct(ContainerInterface $ci)
     {
         $this->ci = $ci;
+        //to access items in the container... $this->ci->get('');
     }
 
     public function create(Request $request, Response $response)
     {
-        $response->getBody()->write('create a new token ');
+        return $response->withJson(['foo' => 'bar']);
     }
 
     public function revoke(Request $request, Response $response)
     {
         $response->getBody()->write('remove a existing token ');
     }
-
-//    public function method2($request, $response, $args) {
-//        //your code
-//        //to access items in the container... $this->ci->get('');
-//    }
 }

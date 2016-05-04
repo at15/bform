@@ -11,5 +11,17 @@ if (!isset($app)) {
     throw new RuntimeException('$app must be set before define route');
 }
 
-$app->post('/tokens', 'Bform\\Controller\\Token::create');
-$app->delete('/tokens/{token}', 'Bform\\Controller\\Token::revoke');
+$app->group('/api/v1', function () {
+    $this->post('/tokens', 'Bform\\Controller\\Token::create');
+    $this->delete('/tokens/{token}', 'Bform\\Controller\\Token::revoke');
+});
+
+$app->get('/test', function ($request, $response) {
+    $response->getBody()->write('I am test');
+    return $response;
+})->add(function ($req, $res, $next) {
+    $res->getBody()->write('hahaha');
+    $res = $res->withHeader('x-mie', 'is a mie');
+    $res = $next($req,$res); // if comment this out, I am test won't show ...
+    return $res;
+});
