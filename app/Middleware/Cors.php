@@ -24,8 +24,13 @@ class Cors
      */
     public function __invoke(Request $request, Response $response, $next)
     {
-        $response = $next($request,$response);
-        return $response->withHeader('Access-Control-Allow-Origin','*')
-            ->withHeader('Access-Control-Allow-Headers','origin, content-type, accept');
+        $response = $next($request, $response);
+        return static::addHeader($response);
+    }
+
+    public static function addHeader(Response $response)
+    {
+        return $response->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
     }
 }
