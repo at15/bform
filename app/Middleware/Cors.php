@@ -31,6 +31,7 @@ class Cors
     public static function addHeader(Response $response)
     {
         return $response->withHeader('Access-Control-Allow-Origin', '*')
-            ->withHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+            ->withHeader('Access-Control-Allow-Headers', 'origin, content-type, accept')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     }
 }

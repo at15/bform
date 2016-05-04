@@ -31,6 +31,6 @@ final class Token
 
     public function revoke(Request $request, Response $response)
     {
-        $response->getBody()->write('remove a existing token ');
+        return $response->withJson(['foo' => 'bar']);
     }
 }
