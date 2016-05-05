@@ -12,12 +12,12 @@ namespace Dy\Cache;
 
 interface CacheProvider
 {
-    // TODO: support multiple namespace.
-    function setNamespace(string $name);
-
     function get(string $name);
 
-    function set(string $name, $value);
+    function set(string $name, $value, int $ttl);
 
-    function hashKey(string $name): string;
+    function flushByPrefix(string $prefix) : int;
+
+    // TODO: provider may need to keep track of all the named cache
+    // like, session, act, user, etc. in order to have better performance monitor
 }

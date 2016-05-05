@@ -16,38 +16,44 @@ final class RedisProvider implements CacheProvider
      * @var Client
      */
     protected $client;
-    /**
-     * @var string
-     */
-    protected $namespace;
 
     public function __construct()
     {
         // TODO: get config for client
         $this->client = new Client();
-        $this->namespace = '';
-    }
-
-    public function setNamespace(string $name)
-    {
-        $this->namespace = $name;
     }
 
     public function get(string $name)
     {
-        return $this->client->get($this->hashKey($name));
+        return $this->client->get($name);
     }
 
-    public function set(string $name, $value)
+    public function set(string $name, $value, int $ttl = 100)
     {
-        $this->client->set($this->hashKey($name), $value);
+        // https://github.com/nrk/predis/issues/203
+        // http://redis.io/commands/SET
+        // TODO: support other usage like nx, xx
+        // EX seconds -- Set the specified expire time, in seconds.
+        // PX milliseconds -- Set the specified expire time, in milliseconds.
+        // NX -- Only set the key if it does not already exist.
+        // XX -- Only set the key if it already exist.
+        $this->client->set($name, $value, 'ex', $ttl);
     }
 
-    public function hashKey(string $name) : string
+    public function flushByPrefix(string $prefix) : int
     {
-        // TODO:
-        // - cut the string length to avoid long key name
-        // - better support in namespace
-        return sha1($this->namespace . $name);
+        // TODO: does redis support regexp in matching?
+        $pattern = $prefix . '*';
+        $cursor = 0;
+        $counter = 0;
+        do {
+            $result = $this->client->scan($cursor, $pattern);
+            $cursor = $result[0];
+            if (!empty($result[1])) {
+                $this->client->del($result[1]);
+            }
+            $counter++;
+        } while ($cursor != 0);
+        return $counter;
     }
 }
