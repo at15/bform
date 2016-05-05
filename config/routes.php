@@ -24,7 +24,12 @@ $app->group('/api/v1', function () use ($app) {
     $app->delete('/tokens/{token}', 'Bform\\Controller\\Token::revoke');
 })->add(new \Bform\Middleware\Cors());
 
-$app->get('/test', function ($request, $response) {
-    $response->getBody()->write('I am test');
+$app->get('/test/{k}/{v}', function (\Slim\Http\Request $request, \Slim\Http\Response $response) {
+    $k = $request->getAttribute('k');
+    $v = $request->getAttribute('v');
+    $cache = new Dy\Cache\RedisProvider();
+    $oldV = $cache->get($k);
+    $cache->set($k, $v);
+    $response->getBody()->write("k {$k} v {$v} oldV {$oldV}");
     return $response;
 });
