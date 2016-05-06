@@ -25,9 +25,11 @@ final class Name
      */
     protected $ttl;
 
-    public function __construct(Name $parent = null)
+    public function __construct(string $value = null, Name $parent = null)
     {
+        $this->value = $value;
         $this->parent = $parent;
+        $this->ttl = 100;
     }
 
     public function isEmpty():bool

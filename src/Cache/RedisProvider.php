@@ -43,11 +43,11 @@ final class RedisProvider implements CacheProvider
     public function flushByPrefix(string $prefix) : int
     {
         // TODO: does redis support regexp in matching?
-        $pattern = $prefix . '*';
+        $options = array('MATCH' => $prefix . '*');
         $cursor = 0;
         $counter = 0;
         do {
-            $result = $this->client->scan($cursor, $pattern);
+            $result = $this->client->scan($cursor, $options);
             $cursor = $result[0];
             if (!empty($result[1])) {
                 $this->client->del($result[1]);

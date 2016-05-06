@@ -35,14 +35,12 @@ final class NamedCache
 
     public function set(string $name, $value)
     {
-        $name = $this->name->getValue() . $name;
-        $this->provider->set($name, $value, $this->ttl);
+        $this->provider->set($this->getRealKey($name), $value, $this->ttl);
     }
 
     public function get(string $name)
     {
-        $name = $this->name->getValue() . $name;
-        return $this->provider->get($name);
+        return $this->provider->get($this->getRealKey($name));
     }
 
     /**
