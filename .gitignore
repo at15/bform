@@ -5,3 +5,5 @@ tmp
 
 # PHP
 vendor
+
+tests/_output/*

@@ -28,7 +28,8 @@
     "laravel/framework": "5.2.*",
     "squizlabs/php_codesniffer": "@stable",
     "phploc/phploc": "@stable",
-    "psy/psysh": "@stable"
+    "psy/psysh": "@stable",
+    "codeception/codeception": "@stable"
   },
   "autoload": {
     "psr-4": {
@@ -40,5 +41,11 @@
     "classmap": [
       "util/laravel/database"
     ]
+  },
+  "scripts": {
+    "test": "codecept run",
+    "cept": "codecept",
+    "codecept": "codecept",
+    "codeception": "codecept"
   }
 }
