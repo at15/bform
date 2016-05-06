@@ -16,14 +16,20 @@ class CacheTest extends \Codeception\TestCase\Test
     {
     }
 
-    // tests
-    public function testMe()
+    public function testNamed()
     {
-        $this->assertEquals(true, true);
+        $name = new \Dy\Cache\Name();
+        $v = 'session';
+        $name->setValue($v);
+        $this->assertEquals($v, $name->getValue());
     }
 
-    public function testMe2()
+    public function testRedisProvider()
     {
-        $this->assertEquals(true, true);
+        $r = new \Dy\Cache\RedisProvider();
+        $k = 'foo';
+        $v = 'bar';
+        $r->set($k, $v);
+        $this->assertEquals($v, $r->get($k));
     }
 }
