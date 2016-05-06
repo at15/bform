@@ -39,7 +39,12 @@ final class Name
 
     public function hasParent():bool
     {
-        return is_null($this->parent);
+        return !is_null($this->parent);
+    }
+
+    public function getParent(): Name
+    {
+        return $this->parent;
     }
 
     public function getValue():string

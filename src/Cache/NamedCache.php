@@ -56,12 +56,31 @@ final class NamedCache
         // namespace is a key prefix
         $namespace = $this->getNamePrefix();
         // shorten the hash
-        $name = substr(sha1($name), 5);
+        // TODO: will shorten cause name collision?
+        $name = substr(sha1($name), 0, 5);
         return $namespace . $name;
     }
 
+    // TODO: there could be collision like app->user and app:user
     protected function getNamePrefix():string
     {
-        return substr(sha1($this->name->getValue()), 3);
+        // support nested names, like App:Session:VIP
+        // : is added to avoid namespace and key name collision
+        $prefix = ':' . $this->hash($this->name->getValue());
+        $cur = $this->name;
+        // max level is 10
+        for ($i = 0; $i < 10; $i++) {
+            if (!$cur->hasParent()) {
+                break;
+            }
+            $cur = $cur->getParent();
+            $prefix = ':' . $this->hash($cur->getValue()) . $prefix;
+        }
+        return $prefix;
+    }
+
+    protected function hash(string $str):string
+    {
+        return substr(sha1($str), 0, 3);
     }
 }
