@@ -3,12 +3,17 @@ php:
   - 7.0
   - nightly
 
+before_install:
+  - mysql -e "create database IF NOT EXISTS bform;" -uroot
+
 install:
   - composer install --no-interaction
-  - sh -c "util/artisan migrate --seed"
+  - sh -c "mv util/laravel/.env.example util/laravel/.env"
+  - sh -c "util/artisan migrate --seed --force"
 
 script:
   - sh -c "composer test"
 
 services:
   - redis-server
+  - mysql

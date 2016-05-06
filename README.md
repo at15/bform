@@ -1,4 +1,7 @@
 # bform
+
+[![Build Status](https://travis-ci.org/at15/bform.svg?branch=master)](https://travis-ci.org/at15/bform)
+
 Paper and data management web application for plastic forming
 
 This project is related to my thesis in SJTU [SMSE](http://en.smse.sjtu.edu.cn/) (School of Material Science and Engineering).
