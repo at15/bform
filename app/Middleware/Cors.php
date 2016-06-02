@@ -13,6 +13,12 @@ use Slim\Http\{
     Request, Response
 };
 
+/**
+ * Class Cors
+ * @package Bform\Middleware
+ *
+ * Middleware that add cors header
+ */
 class Cors
 {
     /**
@@ -28,6 +34,10 @@ class Cors
         return static::addHeader($response);
     }
 
+    /**
+     * @param Response $response
+     * @return \Psr\Http\Message\ResponseInterface Response
+     */
     public static function addHeader(Response $response)
     {
         return $response->withHeader('Access-Control-Allow-Origin', '*')
