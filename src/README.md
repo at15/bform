@@ -7,5 +7,5 @@ is under `Bform` namespace.
 
 It includes the following code
 
-
-
+- Cache is a simplified version for https://github.com/dyweb/redis-cache
+- Session use JWT as token and store token in cache

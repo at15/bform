@@ -11,7 +11,8 @@ if (!isset($app)) {
     throw new RuntimeException('$app must be set before define route');
 }
 
-// return cors for all options request
+// return cors for all options request since swagger will issue a OPTION request
+// before any actual request
 $app->add(function ($request, $response, $next) {
     if ($request->isOptions()) {
         return \Bform\Middleware\Cors::addHeader($response);
