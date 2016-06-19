@@ -5,15 +5,19 @@
  * Date: 2016/5/4
  * Time: 22:44
  */
+use \Dy\Log\LoggerFactory;
 
-// return container
+// create container
 $container = new \Slim\Container();
+
+// log
 // TODO: realpath will check if the folder exists, which is a waste of IO operations
 $logFolder = realpath(__DIR__ . '/../storage/logs');
-$container['logger'] = function ($c) use ($logFolder) {
-    $logger = new \Monolog\Logger('app');
-    $fileHandler = new \Monolog\Handler\StreamHandler($logFolder . '/app.log');
-    $logger->pushHandler($fileHandler);
-    return $logger;
+// TODO: LoggerFactory should be configured and stored in container instead of using as a singleton
+LoggerFactory::setLogFolder($logFolder);
+$container['logger'] = function ($c) {
+    return LoggerFactory::getLogger('app');
 };
+
+// return container
 return $container;
