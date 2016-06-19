@@ -23,7 +23,8 @@
     "illuminate/database": "5.2.*",
     "illuminate/pagination": "5.2.*",
     "predis/predis": "1.0.3",
-    "league/oauth2-server": "5.0.3"
+    "league/oauth2-server": "5.0.3",
+    "monolog/monolog": "1.19"
   },
   "require-dev": {
     "laravel/framework": "5.2.*",
