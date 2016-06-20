@@ -9,6 +9,10 @@ use Slim\Http\{
     Request, Response
 };
 
+
+use League\OAuth2\Server\AuthorizationServer;
+use League\OAuth2\Server\Exception\OAuthServerException;
+
 // You need to have app defined in this scope
 if (!isset($app)) {
     throw new RuntimeException('$app must be set before define route');
@@ -30,6 +34,25 @@ $app->group('/api/v1', function () use ($app) {
     $app->post('/tokens', 'Bform\\Controller\\Token::create');
     $app->delete('/tokens/{token}', 'Bform\\Controller\\Token::revoke');
 })->add(new \Bform\Middleware\Cors());
+
+$app->post('/access_token',
+    function (Request $request, Response $response) use ($app) {
+        /* @var \League\OAuth2\Server\AuthorizationServer $server */
+        $server = $app->getContainer()->get(AuthorizationServer::class);
+        try {
+            // Try to respond to the access token request
+            return $server->respondToAccessTokenRequest($request, $response);
+        } catch (OAuthServerException $exception) {
+            // All instances of OAuthServerException can be converted to a PSR-7 response
+            return $exception->generateHttpResponse($response);
+        } catch (\Exception $exception) {
+            // Catch unexpected exceptions
+            $body = $response->getBody();
+            $body->write($exception->getMessage());
+            return $response->withStatus(500)->withBody($body);
+        }
+    }
+);
 
 // http://bform.lk/index.php/test/1/2
 $app->get('/test/{k}/{v}', function (Request $request, Response $response) {

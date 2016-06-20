@@ -4,7 +4,7 @@ OAuth2 server implementation based on https://github.com/thephpleague/oauth2-ser
 
 some documentation could be found in [the Session library](../Session/README.md)
 
-## Implementation
+## Authorization Server
 
 ### AccessTokenRepository
 
@@ -61,5 +61,43 @@ Though AccessToken should be stored in cache like redis
 ### ScopeRepository
 
 This should integrate with permission system
+
+## Resource Server
+
+
+## Test
+
+using POSTMAN, current authorization server is working.
+The framework use JWT entirely, without using database.
+
+````
+POST /index.php/access_token HTTP/1.1
+Host: bform.lk
+Cache-Control: no-cache
+Postman-Token: 0b9a6d08-957f-f1c4-b64e-5957300b2eac
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="grant_type"
+
+password
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="client_id"
+
+browser
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="client_secret"
+
+browser
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="username"
+
+mie
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="password"
+
+123
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+````
 
 
