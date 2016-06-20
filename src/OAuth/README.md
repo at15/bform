@@ -54,4 +54,12 @@ And for password grant, I don't think it's necessary to check if the client is r
 
 ### RefreshTokenRepository
 
+The interface is pretty similar to AccessTokenRepository.
+Though AccessToken should be stored in cache like redis
+(the framework use JWT, but you can't revoke a JWT token unless you have server storage)
+
+### ScopeRepository
+
+This should integrate with permission system
+
 
