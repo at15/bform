@@ -12,15 +12,27 @@ namespace Dy\OAuth\Repository;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
+use Dy\OAuth\Entity\AccessTokenEntity;
 
-// https://github.com/thephpleague/oauth2-server/blob/master/examples/src/Repositories/AccessTokenRepository.php
+/**
+ * Class AccessTokenRepository
+ * @package Dy\OAuth\Repository
+ *
+ * example: https://github.com/thephpleague/oauth2-server/blob/master/examples/src/Repositories/AccessTokenRepository.php
+ */
 class AccessTokenRepository implements AccessTokenRepositoryInterface
 {
     // TODO: https://github.com/thephpleague/oauth2-server/pull/553
     public function getNewToken(ClientEntityInterface $clientEntity, array $scopes, $userIdentifier = null)
     : AccessTokenEntityInterface
     {
-        // TODO: Implement getNewToken() method.
+        $accessToken = new AccessTokenEntity();
+        $accessToken->setClient($clientEntity);
+        foreach ($scopes as $scope) {
+            $accessToken->addScope($scope);
+        }
+        $accessToken->setUserIdentifier($userIdentifier);
+        return $accessToken;
     }
 
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity)
