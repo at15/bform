@@ -51,3 +51,7 @@ And for password grant, I don't think it's necessary to check if the client is r
 - [ ] UserEntity seems to be too simple to do anything, how can I get user identifier without any parameters?
       I should add other methods to do that, the interface only requires what is needed by the framework itself
 - [ ] UserRepository example is too simple ....
+
+### RefreshTokenRepository
+
+
